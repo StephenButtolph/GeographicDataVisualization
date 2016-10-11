@@ -162,7 +162,9 @@
         };
       };
       
+      alert("loop")
       for(var i = 0; i<years.length; i++) {
+        alert(i)
         var y = document.getElementById('year'+years[i]);
         y.addEventListener('mouseover', settime(globe,i), false);
       }
