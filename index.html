@@ -128,22 +128,18 @@
   <script type="text/javascript" src="third-party/Tween.js"></script>
   <script type="text/javascript" src="globe.js"></script>
   <script type="text/javascript">
-  alert("1")
+
     if(!Detector.webgl){
-  alert("2")
       Detector.addGetWebGLMessage();
     } else {
-  alert("3")
 
       var years = ['1985','2000','2015'];
       var container = document.getElementById('container');
       var globe = new DAT.Globe(container);
-  alert("4")
 
       console.log(globe);
       var i, tweens = [];
       
-  alert("5")
       var settime = function(globe, t) {
         return function() {
           new TWEEN.Tween(globe).to({time: t/years.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
@@ -164,7 +160,6 @@
         y.addEventListener('mouseover', settime(globe,i), false);
       }
       
-  alert("6")
       var xhr;
       TWEEN.start();
       
@@ -186,7 +181,6 @@
           }
         }
       };
-  alert("7")
       xhr.send(null);
     }
 
