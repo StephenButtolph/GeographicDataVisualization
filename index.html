@@ -148,6 +148,9 @@
         return function() {
           new TWEEN.Tween(globe).to({time: t/years.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
           var y = document.getElementById('year'+years[t]);
+          alert(t)
+          alert(years[t])
+          alert(y)
           if (y.getAttribute('class') === 'year active') {
             return;
           }
