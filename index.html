@@ -175,34 +175,23 @@
       
       
       xhr = new XMLHttpRequest();
-  alert("7")
       xhr.open('GET', 'parsedOutput.json', true);
-  alert("8")
       xhr.onreadystatechange = function(e) {
-  alert("9")
         if (xhr.readyState === 4) {
-  alert("10")
           if (xhr.status === 200) {
-  alert("11")
             var data = JSON.parse(xhr.responseText);
             window.data = data;
-  alert("12")
             for (i=0;i<data.length;i++) {
               globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
             }
-  alert("13")
             globe.createPoints();
-  alert("14")
             settime(globe,0)();
-  alert("15")
             globe.animate();
-  alert("16")
             document.body.style.backgroundImage = 'none'; // remove loading
-  alert("17")
           }
         }
       };
-  alert("18")
+  alert("7")
       xhr.send(null);
     }
 
