@@ -154,11 +154,15 @@
           if (y.getAttribute('class') === 'year active') {
             return;
           }
+          alert("here")
           var yy = document.getElementsByClassName('year');
+          alert("here2")
           for(i=0; i<yy.length; i++) {
             yy[i].setAttribute('class','year');
           }
+          alert("here3")
           y.setAttribute('class', 'year active');
+          alert("here4")
         };
       };
       
