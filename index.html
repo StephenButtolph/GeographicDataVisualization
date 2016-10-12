@@ -111,8 +111,6 @@
 
   <div id="currentInfo">
     <span id="year1985" class="year">1985</span>
-    <span id="year2000" class="year">2000</span>
-    <span id="year2015" class="year">2015</span>
   </div>
 
   <div id="title">
@@ -135,7 +133,7 @@
     } else {
   alert("3")
 
-      var years = ['1985','2000','2015'];
+      var years = ['1985'];
       var container = document.getElementById('container');
       var globe = new DAT.Globe(container);
   alert("4")
@@ -192,7 +190,7 @@
             window.data = data;
   alert("12")
   alert(data)
-            for (i=0;i<data.length && i < 3;i++) {
+            for (i=0;i<data.length && i < 1;i++) {
               alert("about to add data " + i)
               alert("data to add " + data[0][1])
               globe.addData(data[0][1], {format: 'magnitude', name: data[0][0], animated: true});
