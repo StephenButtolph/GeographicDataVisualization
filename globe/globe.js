@@ -21,7 +21,7 @@ DAT.Globe = function(container, opts) {
     c.setHSL( ( 0.6 - ( x * 0.5 ) ), 1.0, 0.5 );
     return c;
   };
-  var imgDir = opts.imgDir || '/globe/';
+  var imgDir = opts.imgDir || 'globe/';
 
   var Shaders = {
     'earth' : {
@@ -104,7 +104,7 @@ DAT.Globe = function(container, opts) {
     shader = Shaders['earth'];
     uniforms = THREE.UniformsUtils.clone(shader.uniforms);
 
-    uniforms['texture'].value = THREE.ImageUtils.loadTexture(imgDir+'world.jpg');
+    uniforms['texture'].value = url(imgDir+'world.jpg');
 
     material = new THREE.ShaderMaterial({
 
@@ -406,3 +406,4 @@ DAT.Globe = function(container, opts) {
   return this;
 
 };
+
