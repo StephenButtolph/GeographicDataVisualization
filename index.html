@@ -194,8 +194,8 @@
   alert(data)
             for (i=0;i<data.length && i < 3;i++) {
               alert("about to add data " + i)
-              alert("data to add " + data[i][1])
-              globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
+              alert("data to add " + data[0][1])
+              globe.addData(data[0][1], {format: 'magnitude', name: data[0][0], animated: true});
             }
   alert("13")
             globe.createPoints();
