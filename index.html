@@ -128,90 +128,44 @@
   <script type="text/javascript" src="third-party/Tween.js"></script>
   <script type="text/javascript" src="globe.js"></script>
   <script type="text/javascript">
-  alert("1")
-    if(!Detector.webgl){
-  alert("2")
-      Detector.addGetWebGLMessage();
-    } else {
-  alert("3")
+ 
 
-      var years = ['1985','2000','2015'];
-      var container = document.getElementById('container');
-      var globe = new DAT.Globe(container);
-  alert("4")
+    // Where to put the globe?
+var container = document.getElementById( 'container' );
 
-      console.log(globe);
-      var i, tweens = [];
-      
-  alert("5")
-      var settime = function(globe, t) {
-        return function() {
-          new TWEEN.Tween(globe).to({time: t/years.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
-          var y = document.getElementById('year'+years[t]);
-          alert(t)
-          alert(years[t])
-          alert(y)
-          if (y.getAttribute('class') === 'year active') {
-            return;
-          }
-          alert("here")
-          var yy = document.getElementsByClassName('year');
-          alert("here2")
-          for(i=0; i<yy.length; i++) {
-            yy[i].setAttribute('class','year');
-          }
-          alert("here3")
-          y.setAttribute('class', 'year active');
-          alert("here4")
-        };
-      };
-      
-      alert("loop")
-      for(var i = 0; i<years.length; i++) {
-        alert(i)
-        var y = document.getElementById('year'+years[i]);
-        y.addEventListener('mouseover', settime(globe,i), false);
-      }
-      
-  alert("6")
-      var xhr;
-      TWEEN.start();
-      
-      
-      xhr = new XMLHttpRequest();
-  alert("7")
-      xhr.open('GET', 'parsedOutput.json', true);
-  alert("8")
-      xhr.onreadystatechange = function(e) {
-  alert("9")
-        if (xhr.readyState === 4) {
-  alert("10")
-          if (xhr.status === 200) {
-  alert("11")
-            var data = JSON.parse(xhr.responseText);
-            window.data = data;
-  alert("12")
-  alert(data)
-            for (i=0;i<data.length && i < 3;i++) {
-              alert("about to add data " + i)
-              alert("data to add " + data[i][1])
-              globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
-            }
-  alert("13")
-            globe.createPoints();
-  alert("14")
-            settime(globe,0)();
-  alert("15")
-            globe.animate();
-  alert("16")
-            document.body.style.backgroundImage = 'none'; // remove loading
-  alert("17")
-          }
-        }
-      };
-  alert("18")
-      xhr.send(null);
+// Make the globe
+var globe = new DAT.Globe( container );
+
+// We're going to ask a file for the JSON data.
+var xhr = new XMLHttpRequest();
+
+// Where do we get the data?
+xhr.open( 'GET', 'parsedOutput.json', true );
+
+// What do we do when we have it?
+xhr.onreadystatechange = function() {
+
+    // If we've received the data
+    if ( xhr.readyState === 4 && xhr.status === 200 ) {
+
+        // Parse the JSON
+        var data = JSON.parse( xhr.responseText );
+
+        // Tell the globe about your JSON data
+        globe.addData( data, {format: 'magnitude', name: data} );
+
+        // Create the geometry
+        globe.createPoints();
+
+        // Begin animation
+        globe.animate();
+
     }
+
+};
+
+// Begin request
+xhr.send( null );
 
   </script>
 
