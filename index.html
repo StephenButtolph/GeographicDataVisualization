@@ -73,11 +73,11 @@
         right: 10px;
         font-size: 12px;
         border-radius: 3px;
-        background-color: rgba(255,255,255,.4);
+        background-color: rgba(0,0,0,.2);
       }
 
       .year {
-        font: 16px Georgia;
+        font: 16px Georgia;s
         line-height: 26px;
         height: 30px;
         text-align: center;
@@ -142,7 +142,7 @@
   <script type="text/javascript">
     // Set up news ticker.
     function load() {
-      var feed ="http://feeds.bbci.co.uk/news/world/rss.xml";
+      var feed ="http://rss.cnn.com/rss/edition_world.rss";
       new GFdynamicFeedControl(feed, "feedControl");
     }
     google.load("feeds", "1");
