@@ -116,8 +116,8 @@
   <div id="container"></div>
 
   <div id="body">
-  <div class="header"><span>Expand</span></div>
-  <div class="feedControl">Loading...</div>
+  <div id="header"><span>Expand</span></div>
+  <div id="feedControl">Loading...</div>
   </div>
 
   <div id="info">
@@ -150,20 +150,19 @@
     google.setOnLoadCallback(load);
 
     // Enable hiding of news ticker.
-    (".header").click(function () {
-      header = $(this);
-      //getting the next element
-      feedControl = $header.next();
-      //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-      feedControl.slideToggle(500, function () {
+    var myHeader = document.getElementById('header');
+    var myNewsFeed = document.getElementById('feedControl');
+
+    myEl.addEventListener('click', function() {
+      myNewsFeed.slideToggle(500, function () {
         //execute this after slideToggle is done
         //change text of header based on visibility of content div
-        header.text(function () {
+        myHeader.text(function () {
           //change text based on condition
-          return feedControl.is(":visible") ? "Collapse" : "Expand";
+          return myNewsFeed.is(":visible") ? "Collapse" : "Expand";
         });
       });
-    });
+    }, false);
 
     // Set up globe.
     // Where to put the globe?
