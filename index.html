@@ -165,13 +165,11 @@
     var myNewsFeed = document.getElementById('feedControl');
     function editNewsFeedVisability() {
       if (myShowFeed.value == "Collapse"){
-      alert(myNewsFeed.style.visible);
-        myNewsFeed.style.visible = "hidden";
-      alert(myNewsFeed.style.visible);
+        myNewsFeed.style.visibility = "hidden";
         myShowFeed.value = "Expand";
       }
       else{
-        myNewsFeed.style.visible = "visible";
+        myNewsFeed.style.visibility = "visible";
         myShowFeed.value = "Collapse";
       }
     }
