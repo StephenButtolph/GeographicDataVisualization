@@ -69,11 +69,11 @@
       #flipNewsFeed {
         position: absolute;
         bottom: 40px;
-        width : 50px;
+        width : 75px;
         right: 175px;
         font-size: 12px;
         border-radius: 3px;
-        background-color: rgba(0,0,0,.2);
+        background-color: rgba(255,255,255,1);
       }
       #feedControl {
         position: absolute;
@@ -162,25 +162,9 @@
     var myShowFeed = document.getElementById('flipNewsFeed');
     var myNewsFeed = document.getElementById('feedControl');
     function editNewsFeedVisability() {
-      myShowFeed.text(function () {
-          //change text based on condition
-          return myShowFeed.is(":visible") ? "Collapse" : "Expand";
-        });
+      myShowFeed.text = myShowFeed.is(":visible") ? "Collapse" : "Expand";
       myNewsFeed.style.visibility = myShowFeed.is(":visible") ? "hidden" : "visible";
     }
-    
-
-    myShowFeed.addEventListener('click', function() {
-      alert("Button was pressed");
-      myNewsFeed.slideToggle(500, function () {
-        //execute this after slideToggle is done
-        //change text of header based on visibility of content div
-        myShowFeed.text(function () {
-          //change text based on condition
-          return myShowFeed.is(":visible") ? "Collapse" : "Expand";
-        });
-      });
-    }, false);
 
     // Set up globe.
     // Where to put the globe?
