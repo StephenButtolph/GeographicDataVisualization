@@ -74,6 +74,7 @@
         font-size: 12px;
         border-radius: 3px;
         background-color: rgba(255,255,255,1);
+
       }
       #feedControl {
         position: absolute;
@@ -83,6 +84,7 @@
         font-size: 12px;
         border-radius: 3px;
         background-color: rgba(0,0,0,.2);
+        visibility: "visible";
       }
 
       .year {
@@ -163,7 +165,7 @@
     var myNewsFeed = document.getElementById('feedControl');
     function editNewsFeedVisability() {
       myNewsFeed.style.visibility = myNewsFeed.style.visibility == "visible" ? "hidden" : "visible";
-      myShowFeed.text = myNewsFeed.style.visibility == "visible" ? "Collapse" : "Expand";
+      myShowFeed.title = myNewsFeed.style.visibility == "visible" ? "Collapse" : "Expand";
     }
 
     // Set up globe.
