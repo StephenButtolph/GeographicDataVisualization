@@ -162,8 +162,8 @@
     var myShowFeed = document.getElementById('flipNewsFeed');
     var myNewsFeed = document.getElementById('feedControl');
     function editNewsFeedVisability() {
-      myShowFeed.text = myShowFeed.is(":visible") ? "Collapse" : "Expand";
-      myNewsFeed.style.visibility = myShowFeed.is(":visible") ? "hidden" : "visible";
+      myNewsFeed.style.visibility = myNewsFeed.style.visibility == "visible" ? "hidden" : "visible";
+      myShowFeed.text = myNewsFeed.style.visibility == "visible" ? "Collapse" : "Expand";
     }
 
     // Set up globe.
