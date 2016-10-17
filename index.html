@@ -69,8 +69,8 @@
       #flipNewsFeed {
         position: absolute;
         bottom: 40px;
-        width : 75px;
-        right: 175px;
+        width : 150px;
+        right: 125px;
         font-size: 12px;
         border-radius: 3px;
         background-color: rgba(255,255,255,1);
@@ -127,7 +127,7 @@
   <div id="container"></div>
 
   <div id="body">
-  <input type="button" onclick="editNewsFeedVisability()" value="Collapse" id="flipNewsFeed"></input> 
+  <input type="button" onclick="editNewsFeedVisability()" value="Collapse Newsfeed" id="flipNewsFeed"></input> 
   <div id="feedControl">Loading...</div>
   </div>
 
@@ -164,13 +164,13 @@
     var myShowFeed = document.getElementById('flipNewsFeed');
     var myNewsFeed = document.getElementById('feedControl');
     function editNewsFeedVisability() {
-      if (myShowFeed.value == "Collapse"){
+      if (myShowFeed.value == "Collapse Newsfeed"){
         myNewsFeed.style.visibility = "hidden";
-        myShowFeed.value = "Expand";
+        myShowFeed.value = "Expand Newsfeed";
       }
       else{
         myNewsFeed.style.visibility = "visible";
-        myShowFeed.value = "Collapse";
+        myShowFeed.value = "Collapse Newsfeed";
       }
     }
 
