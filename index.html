@@ -150,17 +150,17 @@
     google.setOnLoadCallback(load);
 
     // Enable hiding of news ticker.
-    $(".header").click(function () {
-      $header = $(this);
+    (".header").click(function () {
+      header = $(this);
       //getting the next element
-      $feedControl = $header.next();
+      feedControl = $header.next();
       //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-      $feedControl.slideToggle(500, function () {
+      feedControl.slideToggle(500, function () {
         //execute this after slideToggle is done
         //change text of header based on visibility of content div
-        $header.text(function () {
+        header.text(function () {
           //change text based on condition
-          return $feedControl.is(":visible") ? "Collapse" : "Expand";
+          return feedControl.is(":visible") ? "Collapse" : "Expand";
         });
       });
     });
