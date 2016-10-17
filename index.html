@@ -127,7 +127,7 @@
   <div id="container"></div>
 
   <div id="body">
-  <input type="button" onclick="editNewsFeedVisability()" value="Collapse Newsfeed" id="flipNewsFeed"></input> 
+  <input type="button" onclick="editNewsFeedVisability()" value="Hide Newsfeed" id="flipNewsFeed"></input> 
   <div id="feedControl">Loading...</div>
   </div>
 
@@ -164,13 +164,13 @@
     var myShowFeed = document.getElementById('flipNewsFeed');
     var myNewsFeed = document.getElementById('feedControl');
     function editNewsFeedVisability() {
-      if (myShowFeed.value == "Collapse Newsfeed"){
+      if (myShowFeed.value == "Hide Newsfeed"){
         myNewsFeed.style.visibility = "hidden";
-        myShowFeed.value = "Expand Newsfeed";
+        myShowFeed.value = "Show Newsfeed";
       }
       else{
         myNewsFeed.style.visibility = "visible";
-        myShowFeed.value = "Collapse Newsfeed";
+        myShowFeed.value = "Hide Newsfeed";
       }
     }
 
