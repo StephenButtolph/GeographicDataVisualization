@@ -125,7 +125,7 @@
   <div id="container"></div>
 
   <div id="body">
-  <button type="showFeed"><span>Collapse</span></button>
+  <button id="flipNewsFeed" onclick="editNewsFeedVisability()">Collapse</button>
   <div id="feedControl">Loading...</div>
   </div>
 
@@ -159,8 +159,16 @@
     google.setOnLoadCallback(load);
 
     // Enable hiding of news ticker.
-    var myShowFeed = document.getElementById('showFeed');
+    var myShowFeed = document.getElementById('flipNewsFeed');
     var myNewsFeed = document.getElementById('feedControl');
+    function editNewsFeedVisability() {
+      myShowFeed.text(function () {
+          //change text based on condition
+          return myShowFeed.is(":visible") ? "Collapse" : "Expand";
+        });
+      myNewsFeed.style.visibility = myShowFeed.is(":visible") ? "hidden" : "visible";
+    }
+    
 
     myShowFeed.addEventListener('click', function() {
       alert("Button was pressed");
