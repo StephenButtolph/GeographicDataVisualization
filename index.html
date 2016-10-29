@@ -114,7 +114,7 @@
       }
       #feedControl {
         position: absolute;
-        bottom: 60px;
+        top: 60px;
         width : 350px;
         right: 10px;
         font-size: 12px;
@@ -182,44 +182,11 @@
         myShowFeed.value = "Hide Newsfeed";
       }
     }
-/*
-    // Set up globe.
-    // Where to put the globe?
-    var container = document.getElementById( 'container' );
-    // Make the globe
-    var globe = new DAT.Globe( container );
-    // We're going to ask a file for the JSON data.
-    var xhr = new XMLHttpRequest();
-    // Where do we get the data?
-    xhr.open( 'GET', 'parsedOutput.json', true );
-    // What do we do when we have it?
-    xhr.onreadystatechange = function() {
-      // If we've received the data
-      if ( xhr.readyState === 4 && xhr.status === 200 ) {
-          // Parse the JSON
-          var data = JSON.parse( xhr.responseText );
-          // Tell the globe about your JSON data
-          globe.addData( data, {format: 'magnitude', name: data} );
-          // Create the geometry
-          globe.createPoints();
-          // Begin animation
-          globe.animate();
-      }
-    };
-    // Begin request
-    xhr.send( null );
-
-
-*/
-
-
-
 
     var types = ['Terror','Gun'];
     var container = document.getElementById('container');
     var globe = new DAT.Globe(container);
 
-    //console.log(globe);
     var i, tweens = [];
       
     var setData = function(globe, t) {
@@ -244,8 +211,7 @@
       
     var xhr;
     TWEEN.start();
-      
-      
+    
     xhr = new XMLHttpRequest();
     xhr.open( 'GET', 'parsedOutput.json', true );
     xhr.onreadystatechange = function(e) {
