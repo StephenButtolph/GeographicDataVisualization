@@ -220,11 +220,13 @@
           var data = JSON.parse(xhr.responseText);
           window.data = data;
           for (i=0;i<data.length;i++) {
+            alert(data.length);
+            alert(data[i].length);
             alert(data[i]);
-            alert(data[i][1]);
             alert(data[i][0]);
+            alert(data[i][1].length);
+            alert(data[i][1]);
             globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
-            alert("here");
           }
           globe.createPoints();
           setData(globe,0)();
