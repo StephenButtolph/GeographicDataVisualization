@@ -250,7 +250,10 @@
         if (xhr.status === 200) {
           var data = JSON.parse(xhr.responseText);
           window.data = data;
+          alert(data.length)
           for (i=0;i<data.length;i++) {
+            alert(data[i][0])
+            alert(data[i][1])
             globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
           }
           globe.createPoints();
