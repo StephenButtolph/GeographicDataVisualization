@@ -227,11 +227,8 @@ DAT.Globe = function(container, opts) {
             }));
       } else {
         if (this._baseGeometry.morphTargets.length < 8) {
-          console.log('t l',this._baseGeometry.morphTargets.length);
           var padding = 8-this._baseGeometry.morphTargets.length;
-          console.log('padding', padding);
           for(var i=0; i<=padding; i++) {
-            console.log('padding',i);
             this._baseGeometry.morphTargets.push({'name': 'morphPadding'+i, vertices: this._baseGeometry.vertices});
           }
         }
@@ -368,10 +365,7 @@ DAT.Globe = function(container, opts) {
 
   function setLocation(lat, lon){
     PI = 3.14159;
-    console.log(target.x);
-    console.log(Math.round(target.x / (2 * PI)));
     target.x = (lon - 90) * PI / 180 + 2 * PI * Math.round(target.x / (2 * PI));
-    console.log(target.x);
     target.y = (180 - lat) * PI / 180;
 
     target.y = Math.asin(Math.sin(target.y)); // correctly rounds target.y

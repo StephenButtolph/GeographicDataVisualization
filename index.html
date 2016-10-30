@@ -219,7 +219,6 @@
         var attack = attacks[index];
         frame = document.getElementById("video");
         frame.style.visibility = "visible";
-        console.log(attack);
         frame.src = attack.embedLink;
 
         document.getElementById("videohider").style.visibility = "visible";
@@ -230,8 +229,6 @@
     
     var attackBtns = document.getElementsByClassName("dropdownbtn");
     for (var i = 0; i < attackBtns.length; i++) {
-      console.log(attackBtns.length);
-      console.log(attackBtns);
       attackBtns[i].addEventListener("click", setVideo(i), false);
     }
 
@@ -239,7 +236,6 @@
     window.onclick = function(event) {
       if (!event.target.matches('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
-        console.log(dropdowns);
         for (var i = 0; i < dropdowns.length; i++) {
           var openDropdown = dropdowns[i];
           if (openDropdown.classList.contains('show')) {
