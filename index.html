@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <style type="text/css">
     @import url("globe/third-party/dynamicfeedcontrol.js");
-
       html {
         height: 100%;
       }
@@ -19,7 +18,6 @@
         line-height: 20px;
         height: 100%;
       }
-
       #info {
         font-size: 11px;
         position: absolute;
@@ -28,23 +26,7 @@
         border-radius: 3px;
         right: 10px;
         padding: 10px;
-
       }
-
-      #currentInfo {
-        width: 270px;
-        position: absolute;
-        left: 20px;
-        top: 63px;
-
-        text-align: center;
-
-        background-color: rgba(0,0,0,.2);
-
-        border-top: 1px solid rgba(255,255,255,0.4);
-        padding: 10px;
-      }
-
       a {
         color: #aaa;
         text-decoration: none;
@@ -52,12 +34,10 @@
       a:hover {
         text-decoration: underline;
       }
-
       .bull {
         padding: 0 5px;
         color: #555;
       }
-
       #title {
         position: absolute;
         top: 20px;
@@ -68,30 +48,28 @@
         font: 20px Georgia;
         padding: 10px;
       }
-
-      .dataType {
-        font: 13px Georgia;
-        line-height: 26px;
-        height: 30px;
-        text-align: center;
-        float: left;
-        width: 135px;
-        color: rgba(255, 255, 255, 0.4);
-
-        cursor: pointer;
-        -webkit-transition: all 0.1s ease-out;
+      #flipNewsFeed {
+        position: absolute;
+        top: 20px;
+        width : 100px;
+        right: 20px;
+        font-size: 12px;
+        border-radius: 3px;
+        background-color: rgba(255,255,255,1);
       }
-
-      .dataType:hover, .dataType.active {
-        font-size: 16px;
-        text-align: center;
-        color: #fff;
+      #feedControl {
+        position: absolute;
+        top: 35px;
+        width : 350px;
+        right: 10px;
+        font-size: 12px;
+        border-radius: 3px;
+        background-color: rgba(0,0,0,.2);
+        visibility: "visible";
       }
-
       #ce span {
         display: none;
       }
-
       #ce {
         width: 107px;
         height: 55px;
@@ -101,29 +79,6 @@
         left: 20px;
         background: url(globe/ce.png);
       }
-
-      #flipNewsFeed {
-        position: absolute;
-        top: 20px;
-        width : 100px;
-        right: 20px;
-        font-size: 12px;
-        border-radius: 3px;
-        background-color: rgba(255,255,255,1);
-
-      }
-      #feedControl {
-        position: absolute;
-        top: 60px;
-        width : 350px;
-        right: 10px;
-        font-size: 12px;
-        border-radius: 3px;
-        background-color: rgba(0,0,0,.2);
-        visibility: "visible";
-      }
-
-
     </style>
   </head>
   <body>
@@ -136,12 +91,7 @@
   </div>
 
   <div id="info">
-    <strong><a href="http://www.chromeexperiments.com/globe">Terrorism Globe</a></strong> <span class="bull">&bull;</span> Created by Stephen Buttolph <span class="bull">&bull;</span> Data acquired from <a href="http://www.start.umd.edu/gtd/">Global Terrorism Database</a>
-  </div>
-
-  <div id="currentInfo">
-    <span id="worldTerror" class="worldType">Terrorism</span>
-    <span id="worldGun" class="worldType">Guns</span>
+    <strong><a href="http://www.chromeexperiments.com/globe">Terrorism Globe</a></strong> <span class="bull">&bull;</span> Created by Stephen Buttolph <span class="bull">&bull;</span> Data acquired from <a href="http://www.start.umd.edu/gtd/">Global Terrorism Database</a>
   </div>
 
   <div id="title">
@@ -168,7 +118,6 @@
     }
     google.load("feeds", "1");
     google.setOnLoadCallback(load);
-
     // Enable hiding of news ticker.
     var myShowFeed = document.getElementById('flipNewsFeed');
     var myNewsFeed = document.getElementById('feedControl');
@@ -182,60 +131,31 @@
         myShowFeed.value = "Hide Newsfeed";
       }
     }
-
-    var types = ['Terror','Gun'];
-    var container = document.getElementById('container');
-    var globe = new DAT.Globe(container);
-
-    var i, tweens = [];
-      
-    var setData = function(globe, t) {
-      return function() {
-        new TWEEN.Tween(globe).to({time: t/types.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
-        var y = document.getElementById('world'+types[t]);
-        if (y.getAttribute('class') === 'dataType active') {
-          return;
-        }
-        var yy = document.getElementsByClassName('dataType');
-        for(i=0; i<yy.length; i++) {
-          yy[i].setAttribute('class','dataType');
-        }
-        y.setAttribute('class', 'dataType active');
-      };
-    };
-      
-    for(var i = 0; i<types.length; i++) {
-      var y = document.getElementById('world'+types[i]);
-      y.addEventListener('mouseover', setData(globe,i), false);
-    }
-      
-    var xhr;
-    TWEEN.start();
-    
-    xhr = new XMLHttpRequest();
+    // Set up globe.
+    // Where to put the globe?
+    var container = document.getElementById( 'container' );
+    // Make the globe
+    var globe = new DAT.Globe( container );
+    // We're going to ask a file for the JSON data.
+    var xhr = new XMLHttpRequest();
+    // Where do we get the data?
     xhr.open( 'GET', 'parsedOutput.json', true );
-    xhr.onreadystatechange = function(e) {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          var data = JSON.parse(xhr.responseText);
-          window.data = data;
-          for (i=0;i<data.length;i++) {
-            console.log(data.length);
-            console.log(data[i].length);
-            console.log(data[i]);
-            console.log(data[i][0]);
-            console.log(data[i][1].length);
-            console.log(data[i][1]);
-            globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
-          }
+    // What do we do when we have it?
+    xhr.onreadystatechange = function() {
+      // If we've received the data
+      if ( xhr.readyState === 4 && xhr.status === 200 ) {
+          // Parse the JSON
+          var data = JSON.parse( xhr.responseText );
+          // Tell the globe about your JSON data
+          globe.addData( data, {format: 'magnitude', name: "Terrorism"} );
+          // Create the geometry
           globe.createPoints();
-          setData(globe,0)();
+          // Begin animation
           globe.animate();
-          document.body.style.backgroundImage = 'none'; // remove loading
-        }
       }
     };
-    xhr.send(null);
+    // Begin request
+    xhr.send( null );
   </script>
   </body>
 </html>
