@@ -208,10 +208,10 @@
     }
 
     var attacks = [{embedLink: "https://www.youtube.com/embed/gLBEYx1beYM", lat: 40.7128, lon: -74.0059},
-              {embedLink: "https://www.youtube.com/embed/VMrYeMTXifc", lat: 35.4676, lon: -97.5164},
-              {embedLink: "https://www.youtube.com/embed/XcNpyAEu2hM", lat: 43.1917, lon: 44.5529},
-              {embedLink: "https://www.youtube.com/embed/TbIXW_2p0bY", lat: 55.1222, lon: -3.3490},
-              {embedLink: "https://www.youtube.com/embed/zEjLas8W4JM", lat: -8.3405, lon: 115.092}];
+                   {embedLink: "https://www.youtube.com/embed/VMrYeMTXifc", lat: 35.4676, lon: -97.5164},
+                   {embedLink: "https://www.youtube.com/embed/XcNpyAEu2hM", lat: 43.1917, lon: 44.5529},
+                   {embedLink: "https://www.youtube.com/embed/TbIXW_2p0bY", lat: 55.1222, lon: -3.3490},
+                   {embedLink: "https://www.youtube.com/embed/zEjLas8W4JM", lat: -8.3405, lon: 115.092}];
 
     // reveal the video
     var setVideo = function(index) {
@@ -227,6 +227,7 @@
       };
     };
     
+    // add listeners for each video button
     var attackBtns = document.getElementsByClassName("dropdownbtn");
     for (var i = 0; i < attackBtns.length; i++) {
       attackBtns[i].addEventListener("click", setVideo(i), false);
