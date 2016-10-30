@@ -189,96 +189,100 @@
   <div class="hidevideo">
     <button id="videohider" style="visibility: hidden" onclick="hideVideoFrame()" class="hidevideobtn">Hide Video</button>
   </div>
-
-
   <script>
-
-function swapDropDown() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function hideVideoFrame() {
-    frame = document.getElementById("video");
-    frame.style.visibility = "hidden";
-    frame.src = frame.scr; // stop the video
-    document.getElementById("videohider").style.visibility = "hidden";
-}
-
-function showVideo1() {
-    frame = document.getElementById("video");
-    frame.style.visibility = "visible";
-    frame.src = "https://www.youtube.com/embed/gLBEYx1beYM";
-
-    document.getElementById("videohider").style.visibility = "visible";
-
-    globe.setLocation(40.7128, -74.0059);
-}
-
-function showVideo2() {
-    frame = document.getElementById("video");
-    frame.style.visibility = "visible";
-    frame.src = "https://www.youtube.com/embed/VMrYeMTXifc";
-
-    document.getElementById("videohider").style.visibility = "visible";
-
-    globe.setLocation(35.4676, -97.5164);
-}
-
-function showVideo3() {
-    frame = document.getElementById("video");
-    frame.style.visibility = "visible";
-    frame.src = "https://www.youtube.com/embed/XcNpyAEu2hM";
-
-    document.getElementById("videohider").style.visibility = "visible";
-
-    globe.setLocation(43.1917, 44.5529);
-}
-
-function showVideo4() {
-    frame = document.getElementById("video");
-    frame.style.visibility = "visible";
-    frame.src = "https://www.youtube.com/embed/TbIXW_2p0bY";
-
-    document.getElementById("videohider").style.visibility = "visible";
-
-    globe.setLocation(55.1222, -3.3490);
-}
-
-function showVideo5() {
-    frame = document.getElementById("video");
-    frame.style.visibility = "visible";
-    frame.src = "https://www.youtube.com/embed/zEjLas8W4JM";
-
-    document.getElementById("videohider").style.visibility = "visible";
-
-    globe.setLocation(-8.3405, 115.092);
-}
-
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-}
-</script>
-
+  
+  </script>
   <script type="text/javascript" src="globe/third-party/Detector.js"></script>
   <script type="text/javascript" src="globe/third-party/three.min.js"></script>
   <script type="text/javascript" src="globe/third-party/Tween.js"></script>
   <script type="text/javascript" src="globe/globe.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script src="globe/third-party/dynamicfeedcontrol.js"
-  type="text/javascript">
-  </script>
+  type="text/javascript"></script>
   <script type="text/javascript">
+    // open or close the drop down bar of video selection.
+    function swapDropDown() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // hide the video.
+    function hideVideoFrame() {
+      frame = document.getElementById("video");
+      frame.style.visibility = "hidden";
+      frame.src = frame.scr; // stop the video
+      document.getElementById("videohider").style.visibility = "hidden";
+    }
+
+    // reveal the first video.
+    function showVideo1() {
+      frame = document.getElementById("video");
+      frame.style.visibility = "visible";
+      frame.src = "https://www.youtube.com/embed/gLBEYx1beYM";
+
+      document.getElementById("videohider").style.visibility = "visible";
+
+      globe.setLocation(40.7128, -74.0059);
+    }
+
+    // reveal the second video.
+    function showVideo2() {
+      frame = document.getElementById("video");
+      frame.style.visibility = "visible";
+      frame.src = "https://www.youtube.com/embed/VMrYeMTXifc";
+
+      document.getElementById("videohider").style.visibility = "visible";
+
+      globe.setLocation(35.4676, -97.5164);
+    }
+
+    // reveal the third video.
+    function showVideo3() {
+      frame = document.getElementById("video");
+      frame.style.visibility = "visible";
+      frame.src = "https://www.youtube.com/embed/XcNpyAEu2hM";
+
+      document.getElementById("videohider").style.visibility = "visible";
+
+      globe.setLocation(43.1917, 44.5529);
+    }
+
+    // reveal the fourth video.
+    function showVideo4() {
+      frame = document.getElementById("video");
+      frame.style.visibility = "visible";
+      frame.src = "https://www.youtube.com/embed/TbIXW_2p0bY";
+
+      document.getElementById("videohider").style.visibility = "visible";
+
+      globe.setLocation(55.1222, -3.3490);
+    }
+
+    // reveal the fifth video.
+    function showVideo5() {
+      frame = document.getElementById("video");
+      frame.style.visibility = "visible";
+      frame.src = "https://www.youtube.com/embed/zEjLas8W4JM";
+
+      document.getElementById("videohider").style.visibility = "visible";
+
+      globe.setLocation(-8.3405, 115.092);
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+
+
+
     // Set up news ticker.
     function load() {
       var feed ="http://rss.cnn.com/rss/edition_world.rss";
@@ -299,6 +303,9 @@ window.onclick = function(event) {
         myShowFeed.value = "Hide Newsfeed";
       }
     }
+
+
+
     // Set up globe.
     // Where to put the globe?
     var container = document.getElementById( 'container' );
