@@ -79,6 +79,77 @@
         left: 20px;
         background: url(globe/ce.png);
       }
+      .dropbtn {
+        background-color: rgba(100, 100, 100, .25);
+        color: white;
+        padding: 16px;
+        font-size: 15px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropbtn:hover, .dropbtn:focus {
+        background-color: rgba(200, 200, 200, .25);
+      }
+
+      .hidevideobtn {
+        background-color: rgba(100, 100, 100, .25);
+        color: white;
+        padding: 16px;
+        font-size: 15px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .hidevideobtn:hover, .hidevideobtn:focus {
+        background-color: rgba(200, 200, 200, .25);
+      }
+
+      .hidevideo {
+        position: absolute;
+        display: inline-block;
+        top: 60px;
+        left: 180px;
+      }
+
+      .dropdown {
+        position: absolute;
+        display: inline-block;
+        top: 60px;
+        left: 30px;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 150px;
+        overflow: auto;
+        box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.2);
+      }
+
+      .dropdownbtn {
+        position: absolute;
+        min-width: 150px;
+        overflow: auto;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown a:hover {background-color: #f1f1f1}
+
+      .show {display:block;}
+
+      .video {
+        position: relative;
+        left: 20;
+        top: 400;
+      }
     </style>
   </head>
   <body>
@@ -95,12 +166,109 @@
   </div>
 
   <div id="title">
-    Deaths Caused by Terrorism 
+    Deaths Caused by Terrorism
   </div>
 
   <a id="ce" href="http://www.chromeexperiments.com/globe">
     <span>This is a Chrome Experiment</span>
   </a>
+
+  <iframe id="video" width="300" height="200" style="position:relative; top: 115px; left: 30px; visibility: hidden" src=""></iframe>
+
+  <div class="dropdown">
+    <button onclick="swapDropDown()" class="dropbtn">Infamous Attacks</button>
+    <div id="myDropdown" class="dropdown-content">
+      <input type="button" class="dropdownbtn" onclick="showVideo1()" value="9/11"></input><br>
+      <input type="button" class="dropdownbtn" onclick="showVideo2()" value="Oklahoma"></input><br>
+      <input type="button" class="dropdownbtn" onclick="showVideo3()" value="Beslan"></input><br>
+      <input type="button" class="dropdownbtn" onclick="showVideo4()" value="Pan Am Flight 103"></input><br>
+      <input type="button" class="dropdownbtn" onclick="showVideo5()" value="Bali Bombings"></input><br>
+    </div>
+  </div>
+
+  <div class="hidevideo">
+    <button id="videohider" style="visibility: hidden" onclick="hideVideoFrame()" class="hidevideobtn">Hide Video</button>
+  </div>
+
+
+  <script>
+
+function swapDropDown() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function hideVideoFrame() {
+    frame = document.getElementById("video");
+    frame.style.visibility = "hidden";
+    frame.src = frame.scr; // stop the video
+    document.getElementById("videohider").style.visibility = "hidden";
+}
+
+function showVideo1() {
+    frame = document.getElementById("video");
+    frame.style.visibility = "visible";
+    frame.src = "https://www.youtube.com/embed/gLBEYx1beYM";
+
+    document.getElementById("videohider").style.visibility = "visible";
+
+    globe.setLocation(40.7128, -74.0059);
+}
+
+function showVideo2() {
+    frame = document.getElementById("video");
+    frame.style.visibility = "visible";
+    frame.src = "https://www.youtube.com/embed/VMrYeMTXifc";
+
+    document.getElementById("videohider").style.visibility = "visible";
+
+    globe.setLocation(35.4676, -97.5164);
+}
+
+function showVideo3() {
+    frame = document.getElementById("video");
+    frame.style.visibility = "visible";
+    frame.src = "https://www.youtube.com/embed/XcNpyAEu2hM";
+
+    document.getElementById("videohider").style.visibility = "visible";
+
+    globe.setLocation(43.1917, 44.5529);
+}
+
+function showVideo4() {
+    frame = document.getElementById("video");
+    frame.style.visibility = "visible";
+    frame.src = "https://www.youtube.com/embed/TbIXW_2p0bY";
+
+    document.getElementById("videohider").style.visibility = "visible";
+
+    globe.setLocation(55.1222, -3.3490);
+}
+
+function showVideo5() {
+    frame = document.getElementById("video");
+    frame.style.visibility = "visible";
+    frame.src = "https://www.youtube.com/embed/zEjLas8W4JM";
+
+    document.getElementById("videohider").style.visibility = "visible";
+
+    globe.setLocation(-8.3405, 115.092);
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
   <script type="text/javascript" src="globe/third-party/Detector.js"></script>
   <script type="text/javascript" src="globe/third-party/three.min.js"></script>

@@ -366,8 +366,16 @@ DAT.Globe = function(container, opts) {
     renderer.render(scene, camera);
   }
 
-  init();
+  function setLocation(lat, lon){
+    PI = 3.14159;
+    target.x = (lon - 90) * PI / 180;
+    target.y = (180 - lat) * PI / 180;
+
+    target.y = Math.asin(Math.sin(target.y)); // correctly rounds target.y
+ } 
+ init();
   this.animate = animate;
+  this.setLocation = setLocation;
 
 
   this.__defineGetter__('time', function() {
