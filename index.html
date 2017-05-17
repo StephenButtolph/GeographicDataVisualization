@@ -130,24 +130,23 @@
 	var attacks = [{embedLink: "https://www.youtube.com/embed/AQPlREDW-Ro", lat: 33.2232, lon: 43.6793},
                    {embedLink: "https://www.youtube.com/embed/PlN_copvSmg", lat: 7.8731, lon: 80.7718},
                    {embedLink: "https://www.youtube.com/embed/oYuZLHkUD04"}];
-    // reveal the video
-    var setVideo = function(index) {
-      return function() {
-    	console.log("here1");
-        var attack = attacks[index];
-        frame = document.getElementById("video");
-        frame.style.visibility = "visible";
-        frame.src = attack.embedLink;
-        document.getElementById("videohider").style.visibility = "visible";
-        if (i < 2){
-        	globe.setLocation(attack.lat, attack.lon);
-        }
-      };
-    };
 
     function onVideoRequest() {
     	console.log("here0");
-    	setVideo(document.getElementById("videoSelector").value);       
+    	var attack = attacks[document.getElementById("videoSelector").value];
+    	console.log("here1");
+        frame = document.getElementById("video");
+    	console.log("here2");
+        frame.style.visibility = "visible";
+    	console.log("here3");
+        frame.src = attack.embedLink;
+    	console.log("here4");
+        document.getElementById("videohider").style.visibility = "visible";
+    	console.log("here5");
+        if (i < 2){
+        	globe.setLocation(attack.lat, attack.lon);
+    		console.log("here6");
+        }     
 	}
 
     // Set up globe.
