@@ -1,62 +1,106 @@
 <!DOCTYPE HTML>
-<html lang="en">
-  <head>
+<html lang="en"><head>
     <title>Terrorism Globe</title>
     <meta charset="utf-8">
     <style type="text/css">
-    @import url("globe/third-party/dynamicfeedcontrol.js");
-      html {
-        height: 100%;
-      }
-      body {
-        margin: 0;
-        padding: 0;
-        background: #000000 url(globe/loading.gif) center center no-repeat;
-        color: #ffffff;
-        font-family: sans-serif;
-        font-size: 13px;
-        line-height: 20px;
-        height: 100%;
-      }
-      #info {
-        font-size: 11px;
-        position: absolute;
-        bottom: 5px;
-        background-color: rgba(0,0,0,0);
-        border-radius: 3px;
-        right: 10px;
-        padding: 10px;
-      }
-      a {
-        color: #aaa;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      .bull {
-        padding: 0 5px;
-        color: #555;
-      }
-      #title {
-        position: absolute;
-        top: 20px;
-        width: 270px;
-        left: 20px;
-        background-color: rgba(0,0,0,0.2);
-        border-radius: 3px;
-        font: 20px Georgia;
-        padding: 10px;
-      }
+	    @import url("globe/third-party/dynamicfeedcontrol.js");
+	   	html {
+	    	height: 100%;
+	    }
+	    body {
+	    	margin: 0;
+	        padding: 0;
+	        background: #000000 url(globe/loading.gif) center center no-repeat;
+	        color: #ffffff;
+	        font-family: sans-serif;
+	        font-size: 13px;
+	        line-height: 20px;
+	        height: 100%;
+	    }
+	    #info {
+	        font-size: 11px;
+	        position: absolute;
+	        bottom: 5px;
+	        background-color: rgba(0,0,0,0);
+	        border-radius: 3px;
+	        right: 10px;
+	        padding: 10px;
+	    }
+	    a {
+	        color: #aaa;
+	        text-decoration: none;
+	    }
+	    a:hover {
+	        text-decoration: underline;
+	    }
+	    .bull {
+	        padding: 0 5px;
+	        color: #555;
+	    }
+	    #title {
+	        position: absolute;
+	        top: 20px;
+	        width: 270px;
+	        left: 20px;
+	        background-color: rgba(0,0,0,0.2);
+	        border-radius: 3px;
+	        font: 20px Georgia;
+	        padding: 10px;
+	    }
+
+	    .selectvideo {
+	        position: absolute;
+	        display: inline-block;
+	        top: 60px;
+	        left: 120px;
+	    }
+
+      	.hidevideo {
+	        position: absolute;
+	        display: inline-block;
+	        top: 60px;
+	        left: 180px;
+	    }
+      	.hidevideobtn {
+        	background-color: rgba(100, 100, 100, .25);
+	        color: white;
+	        padding: 16px;
+	        font-size: 15px;
+	        border: none;
+	        cursor: pointer;
+      	}
+      	.hidevideobtn:hover, .hidevideobtn:focus {
+        	background-color: rgba(200, 200, 200, .25);
+      	}
+
+      	.video {
+	        position: relative;
+	        left: 20;
+	        top: 400;
+      	} 
     </style>
-  </head>
-  <body>
+  </head><body>
 
   <div id="container"></div>
   
   <div id="title">
-    Deaths Caused by Terrorism
+  	Deaths Caused by Terrorism
   </div>
+
+  <div class="selectVideo">
+    <select id="videoSelector" onchange="onVideoRequest()">
+		<option value="0">Iraq Explained</option>
+		<option value="1">War in Sri Lanka</option>
+		<option value="2">Why Become a Terrorist?</option>
+	</select>
+  </div>
+
+  <div class="hidevideo">
+    <button id="videohider" style="visibility: hidden" onclick="hideVideoFrame()" class="hidevideobtn">Exit Video</button>
+  </div>
+
+  <iframe id="video" width="300" height="200" style="position:relative; top: 115px; left: 30px; visibility: hidden" src="">
+  </iframe>
 
   <div id="info">
     <strong><a href="http://www.chromeexperiments.com/globe">Terrorism Globe</a></strong> <span class="bull">&bull;</span> Created by Stephen Buttolph <span class="bull">&bull;</span> Data acquired from <a href="http://www.start.umd.edu/gtd/">Global Terrorism Database</a>
@@ -74,6 +118,34 @@
   	window.onresize = function(event) {
 	    location.reload();
 	};
+
+	function hideVideoFrame() {
+      frame = document.getElementById("video");
+      frame.style.visibility = "hidden";
+      frame.src = frame.scr; // stop the video
+      document.getElementById("videohider").style.visibility = "hidden";
+    }
+
+	var attacks = [{embedLink: "https://www.youtube.com/embed/AQPlREDW-Ro", lat: 33.2232, lon: 43.6793},
+                   {embedLink: "https://www.youtube.com/embed/PlN_copvSmg", lat: 7.8731, lon: 80.7718},
+                   {embedLink: "https://www.youtube.com/embed/oYuZLHkUD04"}];
+    // reveal the video
+    var setVideo = function(index) {
+      return function() {
+        var attack = attacks[index];
+        frame = document.getElementById("video");
+        frame.style.visibility = "visible";
+        frame.src = attack.embedLink;
+        document.getElementById("videohider").style.visibility = "visible";
+        if (i < 2){
+        	globe.setLocation(attack.lat, attack.lon);
+        }
+      };
+    };
+
+    function onVideoRequest() {
+    	setVideo(document.getElementById("videoSelector").value);       
+	}
 
     // Set up globe.
     // Where to put the globe?
