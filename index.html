@@ -58,8 +58,8 @@
       	.hidevideo {
 	        position: absolute;
 	        display: inline-block;
-	        top: 60px;
-	        left: 180px;
+	        top: 610px;
+	        left: 30px;
 	    }
       	.hidevideobtn {
         	background-color: rgba(100, 100, 100, .25);
@@ -132,20 +132,14 @@
                    {embedLink: "https://www.youtube.com/embed/oYuZLHkUD04"}];
 
     function onVideoRequest() {
-    	console.log("here0");
-    	var attack = attacks[document.getElementById("videoSelector").value];
-    	console.log("here1");
+    	var index = document.getElementById("videoSelector").value
+    	var attack = attacks[index];
         frame = document.getElementById("video");
-    	console.log("here2");
         frame.style.visibility = "visible";
-    	console.log("here3");
         frame.src = attack.embedLink;
-    	console.log("here4");
         document.getElementById("videohider").style.visibility = "visible";
-    	console.log("here5");
-        if (i < 2){
+        if (index < 2){
         	globe.setLocation(attack.lat, attack.lon);
-    		console.log("here6");
         }     
 	}
 
