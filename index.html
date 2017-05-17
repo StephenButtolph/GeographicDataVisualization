@@ -52,7 +52,7 @@
 	        position: absolute;
 	        display: inline-block;
 	        top: 60px;
-	        left: 20px;
+	        left: 30px;
 	    }
 
       	.hidevideo {
@@ -133,6 +133,7 @@
     // reveal the video
     var setVideo = function(index) {
       return function() {
+    	console.log("here1");
         var attack = attacks[index];
         frame = document.getElementById("video");
         frame.style.visibility = "visible";
