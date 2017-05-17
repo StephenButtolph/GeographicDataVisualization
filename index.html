@@ -132,13 +132,12 @@
                    {embedLink: "https://www.youtube.com/embed/oYuZLHkUD04"}];
 
     function onVideoRequest() {
-    	var index = document.getElementById("videoSelector").value
-    	var attack = attacks[index];
+    	var attack = attacks[document.getElementById("videoSelector").value];
         frame = document.getElementById("video");
         frame.style.visibility = "visible";
         frame.src = attack.embedLink;
         document.getElementById("videohider").style.visibility = "visible";
-        if (index < 2){
+        if (document.getElementById("videoSelector").value < 2){
         	globe.setLocation(attack.lat, attack.lon);
         }     
 	}
