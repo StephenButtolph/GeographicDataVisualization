@@ -1,172 +1,52 @@
 <!DOCTYPE HTML>
-<html lang="en"><head>
+<html lang="en">
+  <head>
     <title>Terrorism Globe</title>
     <meta charset="utf-8">
-    <style type="text/css">
-	    body {
-	    	margin: 0;
-	        padding: 0;
-	        background: #000000 url(globe/loading.gif) center center no-repeat;
-	        color: #ffffff;
-	        font-family: sans-serif;
-	        font-size: 13px;
-	        line-height: 20px;
-	        height: 100%;
-	    }
-	    #info {
-	        font-size: 11px;
-	        position: absolute;
-	        bottom: 5px;
-	        background-color: rgba(0,0,0,0);
-	        border-radius: 3px;
-	        right: 10px;
-	        padding: 10px;
-	    }
-	    a {
-	        color: #aaa;
-	        text-decoration: none;
-	    }
-	    a:hover {
-	        text-decoration: underline;
-	    }
-	    .bull {
-	        padding: 0 5px;
-	        color: #555;
-	    }
-	    #title {
-	        position: absolute;
-	        top: 20px;
-	        width: 270px;
-	        left: 20px;
-	        background-color: rgba(0,0,0,0.2);
-	        border-radius: 3px;
-	        font: 20px Georgia;
-	        padding: 10px;
-	    }
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="container"></div>
+    
+    <div id="title">
+  	  Deaths Caused by Terrorism
+    </div>
 
-	    .selectvideo {
-	        position: absolute;
-	        display: inline-block;
-	        top: 60px;
-	        left: 30px;
-	    }
-
-      	.hidevideo {
-	        position: absolute;
-	        display: inline-block;
-	        top: 300px;
-	        left: 30px;
-	    }
-      	.hidevideobtn {
-        	background-color: rgba(100, 100, 100, .25);
-	        color: white;
-	        padding: 16px;
-	        font-size: 15px;
-	        border: none;
-	        cursor: pointer;
-      	}
-      	.hidevideobtn:hover, .hidevideobtn:focus {
-        	background-color: rgba(200, 200, 200, .25);
-      	}
-
-      	.video {
-	        position: relative;
-	        left: 20;
-	        top: 350;
-      	} 
-    </style>
-  </head><body>
-
-  <div id="container"></div>
-  
-  <div id="title">
-  	Deaths Caused by Terrorism
-  </div>
-
-  <div class="selectvideo">
-    <select id="videoSelector" onchange="onVideoRequest()">
+    <div class="selectvideo">
+      <select id="videoSelector" onchange="onVideoRequest()">
     	<option value="-1"> -- select a video -- </option>
 		<option value="0">Iraq Explained</option>
 		<option value="1">War in Sri Lanka</option>
 		<option value="2">Why Become a Terrorist?</option>
-	</select>
-  </div>
+	  </select>
+    </div>
 
-  <div class="hidevideo">
-    <button id="videohider" style="visibility: hidden" onclick="hideVideoFrame()" class="hidevideobtn">Exit Video</button>
-  </div>
+    <div class="hidevideo">
+      <button id="videohider" style="visibility: hidden" onclick="hideVideoFrame()" class="hidevideobtn">Exit Video</button>
+    </div>
 
-  <iframe id="video" width="300" height="200" style="position:relative; top: 85px; left: 30px; visibility: hidden" src="">
-  </iframe>
+    <iframe id="video" width="300" height="200" style="position:relative; top: 85px; left: 30px; visibility: hidden" src=""></iframe>
 
-  <div id="info">
-    <strong><a href="http://www.chromeexperiments.com/globe">Terrorism Globe</a></strong> <span class="bull">&bull;</span> Created by Stephen Buttolph <span class="bull">&bull;</span> Data acquired from <a href="http://www.start.umd.edu/gtd/">Global Terrorism Database</a>
-  </div>
+    <div id="info">
+      <strong>
+        <a href="http://www.chromeexperiments.com/globe">
+          Terrorism Globe
+        </a>
+      </strong>
+      <span class="bull">&bull;</span>
+        Created by Stephen Buttolph
+      <span class="bull">&bull;</span>
+        Data acquired from
+      <a href="http://www.start.umd.edu/gtd/">
+        Global Terrorism Database
+      </a>
+    </div>
 
-  <script type="text/javascript" src="globe/third-party/Detector.js"></script>
-  <script type="text/javascript" src="globe/third-party/three.min.js"></script>
-  <script type="text/javascript" src="globe/third-party/Tween.js"></script>
-  <script type="text/javascript" src="globe/globe.js"></script>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-  <script type="text/javascript">
-
-  	window.onresize = function(event) {
-	    location.reload();
-	};
-
-	function hideVideoFrame() {
-      frame = document.getElementById("video");
-      frame.style.visibility = "hidden";
-      frame.src = frame.scr; // stop the video
-      document.getElementById("videohider").style.visibility = "hidden";
-      document.getElementById('videoSelector').value = -1; // reset the dropdown
-    }
-
-	var attacks = [{embedLink: "https://www.youtube.com/embed/AQPlREDW-Ro", lat: 33.2232, lon: 43.6793},
-                   {embedLink: "https://www.youtube.com/embed/PlN_copvSmg", lat: 7.8731, lon: 80.7718},
-                   {embedLink: "https://www.youtube.com/embed/oYuZLHkUD04"}];
-
-    function onVideoRequest() {
-    	if (document.getElementById("videoSelector").value != -1){
-	    	var attack = attacks[document.getElementById("videoSelector").value];
-	        frame = document.getElementById("video");
-	        frame.style.visibility = "visible";
-	        frame.src = attack.embedLink;
-	        document.getElementById("videohider").style.visibility = "visible";
-	        if (document.getElementById("videoSelector").value < 2){
-	        	globe.setLocation(attack.lat, attack.lon);
-	        }
-	    }
-	    else{
-	    	hideVideoFrame();
-	    }
-	}
-
-    // Set up globe.
-    // Where to put the globe?
-    var container = document.getElementById( 'container' );
-    // Make the globe
-    var globe = new DAT.Globe( container );
-    // We're going to ask a file for the JSON data.
-    var xhr = new XMLHttpRequest();
-    // Where do we get the data?
-    xhr.open( 'GET', 'parsedOutput.json', true );
-    // What do we do when we have it?
-    xhr.onreadystatechange = function() {
-      // If we've received the data
-      if ( xhr.readyState === 4 && xhr.status === 200 ) {
-          // Parse the JSON
-          var data = JSON.parse( xhr.responseText );
-          // Tell the globe about your JSON data
-          globe.addData( data, {format: 'magnitude', name: "Terrorism"} );
-          // Create the geometry
-          globe.createPoints();
-          // Begin animation
-          globe.animate();
-      }
-    };
-    // Begin request
-    xhr.send( null );
-  </script>
+    <script type="text/javascript" src="globe/third-party/Detector.js"></script>
+    <script type="text/javascript" src="globe/third-party/three.min.js"></script>
+    <script type="text/javascript" src="globe/third-party/Tween.js"></script>
+    <script type="text/javascript" src="globe/globe.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="topLevelScripts.js"></script>
   </body>
 </html>
